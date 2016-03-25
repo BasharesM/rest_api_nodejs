@@ -10,6 +10,10 @@ module.exports = function (server) {
         '/',
         server.actions.events.get
     );
+    router.get(
+        '/:id/participants',
+        server.actions.events.get
+    );
     router.post(
         '/',
         bodyparser,

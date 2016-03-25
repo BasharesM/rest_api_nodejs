@@ -5,6 +5,8 @@
 module.exports = function (server) {
     server.actions = {
         auth: require('./auth')(server),
-        event: require('./events')(server)
+        events: require('./events')(server),
+        users: require('./users')(server),
+        category: require('./categories')(server)
     };
 };

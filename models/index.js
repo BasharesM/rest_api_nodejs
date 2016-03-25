@@ -10,6 +10,7 @@ module.exports = function (server) {
     server.models = {
         Category: require('./Category')(server),
         Event: require('./Event')(server),
-        User: require('./User')(server)
+        User: require('./User')(server),
+        Token: require('./Token')(server)
     };
 };
