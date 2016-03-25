@@ -52,6 +52,7 @@ Une *Categorie* (Category) est lié à :
 ## Règles de gestion
 --------------------------------------------------------------------------------
   - La création d'évènements ne peut se faire que si un utilisateur est authentifié.
+
   - S'inscrire à un évènement :
     - ne peut se faire que si l'évènement est à venir,
     - que si l'utilisateur est authentifité

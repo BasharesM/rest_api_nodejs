@@ -10,15 +10,21 @@ module.exports = function (server) {
         '/',
         server.actions.events.get
     );
-    router.get(
-        '/:id/participants',
-        server.actions.events.get
-    );
     router.post(
         '/',
         bodyparser,
         server.middlewares.ensureAuthenticated,
         server.actions.events.create
+    );
+    router.get(
+        '/:id/participants',
+        server.actions.events.get
+    );
+    router.post(
+        '/:id/subscribe',
+        bodyparser,
+        server.middlewares.ensureAuthenticated,
+        server.actions.events.subscribe
     );
     router.delete(
         '/:id',
