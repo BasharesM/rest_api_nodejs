@@ -1,30 +1,22 @@
 module.exports = function(server){
   return function(req, res, next){
 
+    // get the user id
   var userId = req.params.id;
 
-  var user = server.models.User
+
+    // create the query
+  var query = server.models.User
       .findById(userId)
       .populate('events')
 
-/*Tentative en attaquant la table */
-  var allEvents = server.models.Event
-      .find()
-
-  var eventsOfUser = [];
-
-  allEvents.forEach(function(event, index, array){
-    console.log(event);
-  }
-);
-
-
-      //console.log(events);
-
-      user.exec(function(err, data){
-        if (err)
+      // execute the query // get the collection
+      query.exec(function(err, user){
+      if (err)
           return res.status(401).send('Bad Request : User Does not exists');
-        res.send(data.events);
+
+          // render the user's events
+      res.send(user.events);
       });
 
   }
