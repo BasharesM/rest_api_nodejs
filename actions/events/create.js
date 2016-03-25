@@ -16,7 +16,8 @@ module.exports = function (server) {
             }
 
             // Catégorie non existante
-            if (!data) {
+            console.log(data);
+            if (!data || data == null) {
                 new Category({
                     label: req.body.category
                 }).save(function (err, data) {
