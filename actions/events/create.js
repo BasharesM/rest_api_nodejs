@@ -16,41 +16,50 @@ module.exports = function (server) {
             }
 
             // Catégorie non existante
-            console.log(data);
-            if (!data || data == null) {
-                new Category({
+            if (!data) {
+                var category = new Category({
                     label: req.body.category
-                }).save(function (err, data) {
+                });
+
+                var id = category.save(function (err, newCategory) {
+                    if (err) {
+                        return res.status(500).send(err);
+                    }
+                    req.body.categoryId = newCategory._id;
+                    console.log('catégorie sauvegardée: ' + req.body.category);
+
+                    delete req.body.category;
+                    req.body.organisateur = req.auth.userId;
+                    req.body.participants = [req.auth.userId];
+
+                    new Event(req.body).save(function (err, data) {
+                        if (err) {
+                            return res.status(500).send(err);
+                        }
+
+                        console.log('Event ajouté');
+                    });
+                    res.send('Good');
+                });
+            } else {
+                req.body.categoryId = data._id;
+
+                delete req.body.category;
+                req.body.organisateur = req.auth.userId;
+                req.body.participants = [req.auth.userId];
+
+                new Event(req.body).save(function (err, data) {
                     if (err) {
                         return res.status(500).send(err);
                     }
 
-                    console.log('catégorie sauvegardée: ' + req.body.category);
+                    console.log('Event ajouté');
                 });
+
+                res.send('Good');
             }
-
-            delete req.body.category;
-            req.body.categoryId = data._id;
-            req.body.organisateur = req.auth.userId;
-            req.body.participants = [req.auth.userId];
-
-            new Event(req.body).save(function (err, data) {
-                if (err) {
-                    return res.status(500).send(err);
-                }
-
-                console.log('Event ajouté');
-            });
 
 
         });
-
-        //event.save(function (err, data) {
-        //    if (err) {
-        //        return res.status(500).send(err);
-        //    }
-        //
-        //    res.send(data);
-        //})
     }
 };
