@@ -18,7 +18,7 @@ module.exports = function (server) {
     );
     router.get(
         '/:id/participants',
-        server.actions.events.get
+        server.actions.events.participants
     );
     router.post(
         '/:id/subscribe',
