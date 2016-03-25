@@ -17,6 +17,7 @@ module.exports = function (server) {
     router.post(
         '/',
         bodyparser,
+        server.middlewares.ensureAuthenticated,
         server.actions.events.create
     );
     router.delete(

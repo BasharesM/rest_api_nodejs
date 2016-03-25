@@ -5,6 +5,33 @@
 
 L’application permettra de référencer, et de s'incrire à différents types d'évènements (conférences, meetups, workshops, ...).
 
+Un *évènement* (Event) est représenté par :
+  - un titre (obligatoire),
+  - une description (obligatoire),
+  - une date (obligatoire),
+  - un lieu (obligatoire),
+  - u nombre maximum de participants (obligatoire)
+
+Un *évènement* (Event) est lié à :
+  - une *catégorie* (Category) (Obligatoire)
+  - un *organizateur* (User) (Obligatoire)
+  - des *participants* (User) (Obligatoire)
+
+Un *Utilisateur* (User) est représenté par :
+  - un prénom,
+  - un nom,
+  - un email, (Obligatoire)
+  - un password, (Obligatoire)
+
+Un *Utilisateur* (User) est lié à :
+  - des *évènements* (Event),
+  - des *participations* (Event)
+
+Une *Categorie* (Category) est représentée par :
+  - un label (Obligatoire)
+
+Une *Categorie* (Category) est lié à :
+  - des évènements (Event)
 
   Fonctionnalités :
   --------------------------------------------------------------------------------
