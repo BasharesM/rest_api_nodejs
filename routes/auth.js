@@ -11,13 +11,13 @@ module.exports = function (server) {
         '/login',
         bodyparser,
         server.middlewares.ensureBodyFields(['email', 'password']),
-        server.controllers.auth.login
+        server.actions.auth.login
     );
 
     router.post(
         '/logout',
         server.middlewares.ensureAuthenticated,
-        server.controllers.auth.logout
+        server.actions.auth.logout
     );
 
     return router;
