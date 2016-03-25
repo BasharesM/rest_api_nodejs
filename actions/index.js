@@ -4,6 +4,7 @@
 
 module.exports = function (server) {
     server.actions = {
-        auth: require('./auth')(server)
+        auth: require('./auth')(server),
+        event: require('./events')(server)
     };
 };
