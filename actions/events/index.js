@@ -7,6 +7,7 @@ module.exports = function (server) {
         create: require('./create')(server),
         remove: require('./remove')(server),
         get: require('./get')(server),
-        update: require('./update')(server)
+        update: require('./update')(server),
+        subscribe: require('./subscribe')(server)
     }
 };
