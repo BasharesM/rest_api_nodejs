@@ -17,30 +17,8 @@ module.exports = function (server) {
 
             // Catégorie non existante
             if (!data) {
-                var category = new Category({
-                    label: req.body.category
-                });
+                createCategory(createEvent);
 
-                var id = category.save(function (err, newCategory) {
-                    if (err) {
-                        return res.status(500).send(err);
-                    }
-                    req.body.categoryId = newCategory._id;
-                    console.log('catégorie sauvegardée: ' + req.body.category);
-
-                    delete req.body.category;
-                    req.body.organisateur = req.auth.userId;
-                    req.body.participants = [req.auth.userId];
-
-                    new Event(req.body).save(function (err, data) {
-                        if (err) {
-                            return res.status(500).send(err);
-                        }
-
-                        console.log('Event ajouté');
-                    });
-                    res.send('Good');
-                });
             } else {
                 req.body.categoryId = data._id;
 
@@ -48,18 +26,38 @@ module.exports = function (server) {
                 req.body.organisateur = req.auth.userId;
                 req.body.participants = [req.auth.userId];
 
-                new Event(req.body).save(function (err, data) {
-                    if (err) {
-                        return res.status(500).send(err);
-                    }
-
-                    console.log('Event ajouté');
-                });
-
-                res.send('Good');
+                createEvent();
             }
-
-
         });
+
+        var createCategory = function () {
+            var category = new Category({
+                label: req.body.category
+            });
+
+            var id = category.save(function (err, newCategory) {
+                if (err) {
+                    return res.status(500).send(err);
+                }
+                req.body.categoryId = newCategory._id;
+                console.log('catégorie sauvegardée: ' + req.body.category);
+
+                createEvent();
+            });
+        }
+
+        var createEvent = function () {
+            delete req.body.category;
+            req.body.organisateur = req.auth.userId;
+            req.body.participants = [req.auth.userId];
+
+            new Event(req.body).save(function (err, data) {
+                if (err) {
+                    return res.status(500).send(err);
+                }
+
+                console.log('Event ajouté');
+            });
+        }
     }
 };

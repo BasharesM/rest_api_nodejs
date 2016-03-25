@@ -6,6 +6,8 @@ module.exports = function(server){
 
   router.get('/:id', server.actions.users.show);
 
+  router.get('/myevents/:id', server.actions.users.myevents);
+
   router.post('/',
     bodyparser,
     server.middlewares.ensureBodyFields(['password', 'email']),

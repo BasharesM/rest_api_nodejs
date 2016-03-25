@@ -4,6 +4,7 @@ module.exports = function(server){
     get: require('./get')(server),
     show: require('./show')(server),
     remove: require('./remove')(server),
-    update: require('./update')(server)
+    update: require('./update')(server),
+    myevents: require('./myevents')(server)
   }
 };

@@ -18,7 +18,7 @@
  		);
  	router.get(
  		'/:id/participants',
- 		server.actions.events.get
+ 		server.actions.events.participants
  		);
  	router.get(
  		'/:param',

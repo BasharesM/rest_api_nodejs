@@ -1,5 +1,5 @@
 /**
- * Created by Michel on 25/03/2016.
+ * Created by Michel et yassine on 25/03/2016.
  */
 
  module.exports = function (server) {
@@ -9,6 +9,7 @@
  		get: require('./get')(server),
  		getEvents: require('./getEvents')(server),
  		update: require('./update')(server),
- 		subscribe: require('./subscribe')(server)
+ 		subscribe: require('./subscribe')(server),
+ 		participants: require('./participants')(server)
  	}
  };
