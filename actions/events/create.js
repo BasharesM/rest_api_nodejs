@@ -7,6 +7,7 @@ module.exports = function (server) {
     return function (req, res, next) {
         var Category = server.models.Category;
         var Event = server.models.Event;
+        var User = server.models.User;
 
         Category.findOne({
             label: req.body.category

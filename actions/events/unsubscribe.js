@@ -9,13 +9,13 @@ module.exports = function (server) {
         var User = server.models.User;
         var Event = server.models.Event;
 
-        Event.findByIdAndUpdate(req.params.id, {$push: {participants: req.auth.userId}}, function (err, data) {
+        Event.findByIdAndUpdate(req.params.id, {$pull: {participants: req.auth.userId}}, function (err, data) {
             if (err) {
                 return res.status(500).send(err);
             }
         });
 
-        User.findByIdAndUpdate(req.auth.userId, {$push: {participations: req.params.id}}, function (err, data) {
+        User.findByIdAndUpdate(req.auth.userId, {$pull: {participations: req.params.id}}, function (err, data) {
             if (err) {
                 return res.status(500).send(err);
             }
