@@ -8,6 +8,7 @@ module.exports = function (server) {
         remove: require('./remove')(server),
         get: require('./get')(server),
         update: require('./update')(server),
-        subscribe: require('./subscribe')(server)
+        subscribe: require('./subscribe')(server),
+        participants: require('./participants')(server)
     }
 };
